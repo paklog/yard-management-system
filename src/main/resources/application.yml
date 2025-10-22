@@ -1,23 +1,20 @@
 spring:
   application:
     name: yard-management-system
-
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
   data:
     mongodb:
-      uri: ${MONGODB_URI:mongodb://localhost:27017/yard_management_system}
-
+      uri: ${MONGODB_URI:mongodb://localhost:27017/yard}
+      auto-index-creation: true
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: io.cloudevents.kafka.CloudEventSerializer
-    consumer:
-      group-id: yard-management-system
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: io.cloudevents.kafka.CloudEventDeserializer
 
 server:
-  port: 8094
+  port: ${SERVER_PORT:8094}
 
 management:
   endpoints:
@@ -29,7 +26,32 @@ management:
       prometheus:
         enabled: true
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+yard:
+  events:
+    topic: yard.events
+  tracking:
+    gps-update-interval-seconds: 60
+  scheduling:
+    appointment-buffer-minutes: 15
+
 logging:
   level:
     root: INFO
-    com.paklog.yard.management.system: DEBUG
+    com.paklog.yard: DEBUG
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  data:
+    mongodb:
+      uri: mongodb://mongodb:27017/yard
+  kafka:
+    bootstrap-servers: kafka:9092
