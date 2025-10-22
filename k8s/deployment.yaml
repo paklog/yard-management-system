@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yard-management-system
+  namespace: paklog-core
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: yard-management-system
+  template:
+    metadata:
+      labels:
+        app: yard-management-system
+    spec:
+      containers:
+      - name: yard-management-system
+        image: paklog/yard-management-system:latest
+        ports:
+        - containerPort: 8094
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: yard-management-system
+  namespace: paklog-core
+spec:
+  selector:
+    app: yard-management-system
+  ports:
+  - port: 8094
+    targetPort: 8094
