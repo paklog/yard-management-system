@@ -1,14 +1,9 @@
 package com.paklog.yard.application.command;
 
-import lombok.*;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class CheckOutTrailerCommand {
+public record CheckOutTrailerCommand(
     @NotBlank
-    private String trailerId;
-    private String checkedOutBy;
-}
+    String trailerId,
+    String checkedOutBy
+) {}

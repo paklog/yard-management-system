@@ -1,15 +1,10 @@
 package com.paklog.yard.application.command;
 
-import lombok.*;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class AssignDockCommand {
+public record AssignDockCommand(
     @NotBlank
-    private String trailerId;
-    private String dockId;
-    private String assignedBy;
-}
+    String trailerId,
+    String dockId,
+    String assignedBy
+) {}

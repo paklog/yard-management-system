@@ -1,13 +1,15 @@
 package com.paklog.yard.domain.service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.paklog.yard.domain.aggregate.Trailer;
 import com.paklog.yard.domain.valueobject.GPSCoordinates;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-@Slf4j
 @Service
 public class TrailerTrackingService {
+    private static final Logger log = LoggerFactory.getLogger(TrailerTrackingService.class);
+
     
     public void updateTrailerLocation(Trailer trailer, GPSCoordinates newLocation) {
         log.info("Updating location for trailer: {}", trailer.getTrailerNumber());

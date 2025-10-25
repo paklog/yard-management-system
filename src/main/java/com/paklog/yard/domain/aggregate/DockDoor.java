@@ -2,16 +2,11 @@ package com.paklog.yard.domain.aggregate;
 
 import com.paklog.yard.domain.valueobject.*;
 import com.paklog.yard.domain.event.*;
-import lombok.*;
 import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.Instant;
 import java.util.*;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Document(collection = "dock_doors")
 public class DockDoor {
     
@@ -70,5 +65,37 @@ public class DockDoor {
     }
     
     public List<DomainEvent> getDomainEvents() { return new ArrayList<>(domainEvents); }
+    public List<DomainEvent> domainEvents() { return getDomainEvents(); }
     public void clearDomainEvents() { domainEvents.clear(); }
+
+
+    // Getters
+    public String getId() { return id; }
+    public String getDockNumber() { return dockNumber; }
+    public String getDockName() { return dockName; }
+    public DockStatus getStatus() { return status; }
+    public LocationType getDockType() { return dockType; }
+    public String getCurrentTrailerId() { return currentTrailerId; }
+    public String getCurrentAppointmentId() { return currentAppointmentId; }
+    public Integer getCapacity() { return capacity; }
+    public Map<String, Object> getEquipment() { return equipment; }
+    public Map<String, Object> getCapabilities() { return capabilities; }
+    public Long getVersion() { return version; }
+    public Instant getCreatedAt() { return createdAt; }
+    public Instant getUpdatedAt() { return updatedAt; }
+
+    // Setters
+    public void setId(String id) { this.id = id; }
+    public void setDockNumber(String dockNumber) { this.dockNumber = dockNumber; }
+    public void setDockName(String dockName) { this.dockName = dockName; }
+    public void setStatus(DockStatus status) { this.status = status; }
+    public void setDockType(LocationType dockType) { this.dockType = dockType; }
+    public void setCurrentTrailerId(String currentTrailerId) { this.currentTrailerId = currentTrailerId; }
+    public void setCurrentAppointmentId(String currentAppointmentId) { this.currentAppointmentId = currentAppointmentId; }
+    public void setCapacity(Integer capacity) { this.capacity = capacity; }
+    public void setEquipment(Map<String, Object> equipment) { this.equipment = equipment; }
+    public void setCapabilities(Map<String, Object> capabilities) { this.capabilities = capabilities; }
+    public void setVersion(Long version) { this.version = version; }
+    public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
+    public void setUpdatedAt(Instant updatedAt) { this.updatedAt = updatedAt; }
 }

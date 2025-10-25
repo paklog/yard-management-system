@@ -1,12 +1,16 @@
 package com.paklog.yard.domain.event;
 
-import lombok.Data;
 import java.time.Instant;
 import java.util.UUID;
 
-@Data
 public abstract class DomainEvent {
     private final String eventId = UUID.randomUUID().toString();
     private final Instant occurredAt = Instant.now();
     private final String eventType = this.getClass().getSimpleName();
+
+    public String getEventId() { return eventId; }
+    public Instant getOccurredAt() { return occurredAt; }
+    public String getEventType() { return eventType; }
+
+    public String eventType() { return eventType; }
 }

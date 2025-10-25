@@ -4,16 +4,18 @@ import com.paklog.yard.domain.aggregate.Trailer;
 import com.paklog.yard.domain.repository.TrailerRepository;
 import com.paklog.yard.domain.valueobject.TrailerStatus;
 import com.paklog.yard.infrastructure.persistence.document.TrailerDocument;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-@RequiredArgsConstructor
 public class TrailerRepositoryAdapter implements TrailerRepository {
     
     private final MongoTrailerRepository mongoRepository;
+    public TrailerRepositoryAdapter(MongoTrailerRepository mongoRepository) {
+        this.mongoRepository = mongoRepository;
+    }
+
     
     @Override
     public Trailer save(Trailer trailer) {

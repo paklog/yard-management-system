@@ -1,11 +1,6 @@
 package com.paklog.yard.domain.valueobject;
 
-import lombok.*;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class GPSCoordinates {
     private Double latitude;
     private Double longitude;

@@ -1,21 +1,17 @@
 package com.paklog.yard.application.command;
 
 import com.paklog.yard.domain.valueobject.AppointmentWindow;
-import lombok.*;
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.util.Map;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class ScheduleAppointmentCommand {
+public record ScheduleAppointmentCommand(
     @NotBlank
-    private String carrierId;
-    private String trailerId;
+    String carrierId,
+    String trailerId,
     @NotNull
-    private AppointmentWindow window;
-    private String appointmentType;
-    private String referenceNumber;
-    private Map<String, Object> cargo;
-}
+    AppointmentWindow window,
+    String appointmentType,
+    String referenceNumber,
+    Map<String, Object> cargo
+) {}

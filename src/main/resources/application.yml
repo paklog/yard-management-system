@@ -34,7 +34,7 @@ springdoc:
 
 yard:
   events:
-    topic: yard.events
+    topic: transportation-logistics.yard-management.events
   tracking:
     gps-update-interval-seconds: 60
   scheduling:
